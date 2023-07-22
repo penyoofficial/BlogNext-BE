@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: penyo-boot
+  profiles:
+    active: dev
