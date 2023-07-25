@@ -1,2 +1,8 @@
 server:
   port: 80
+
+# MongoDB 配置
+spring:
+  data:
+    mongodb:
+      uri: mongodb://gunala:gu20030207@localhost:27017/penyo?authSource=admin
