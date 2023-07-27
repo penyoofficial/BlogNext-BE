@@ -33,22 +33,6 @@ public class userIdenceDaoImpl implements userIdenceDao {
         return mongoTemplate.findAll(slogan.class);
     }
 
-    /**
-     * 校验是否为正整数
-     *
-     * @param regex   正则表达式
-     * @param orginal 数据
-     * @return boolean
-     */
-    private static boolean isMatch(String regex, String orginal){
-        if (orginal == null || orginal.trim().equals("")) {
-            return false;
-        }
-        Pattern pattern = Pattern.compile(regex);
-        Matcher isNum = pattern.matcher(orginal);
-        return isNum.matches();
-    }
-
     @Override
     public Page<articles> getArticles(String id,String from, String to, String category, String keyword, Integer page) {
         SpringDataPageable pageable = new SpringDataPageable();
