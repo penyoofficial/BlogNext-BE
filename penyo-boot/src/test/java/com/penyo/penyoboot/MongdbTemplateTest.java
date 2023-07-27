@@ -49,7 +49,7 @@ public class MongdbTemplateTest {
     }
     @Test
     public void testGetArticles(){
-        ArticlesForm article=new ArticlesForm(null,"2023-6-1","2023-6-30","","",1);
+        ArticlesForm article=new ArticlesForm(null,"2023-6-1","2023-6-30","","",-1);
         Page<articles> stringObjectMap = userIdenceService.selectArticle(article);
         System.out.println(JSONUtil.toJsonStr(stringObjectMap));
 

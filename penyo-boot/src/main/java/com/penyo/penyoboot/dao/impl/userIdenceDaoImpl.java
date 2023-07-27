@@ -15,6 +15,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -32,6 +33,22 @@ public class userIdenceDaoImpl implements userIdenceDao {
         return mongoTemplate.findAll(slogan.class);
     }
 
+    /**
+     * 校验是否为正整数
+     *
+     * @param regex   正则表达式
+     * @param orginal 数据
+     * @return boolean
+     */
+    private static boolean isMatch(String regex, String orginal){
+        if (orginal == null || orginal.trim().equals("")) {
+            return false;
+        }
+        Pattern pattern = Pattern.compile(regex);
+        Matcher isNum = pattern.matcher(orginal);
+        return isNum.matches();
+    }
+
     @Override
     public Page<articles> getArticles(String id,String from, String to, String category, String keyword, Integer page) {
         SpringDataPageable pageable = new SpringDataPageable();
@@ -42,12 +59,8 @@ public class userIdenceDaoImpl implements userIdenceDao {
         pageable.setPagesize(10);
         // 排序
         pageable.setSort(sort);
-        if (page<=0){
-            page=1;
-            // 开始页
-            pageable.setPagenumber(page);
-            return PageUtil(new Query(Criteria.where("time").lt(new Date(0,0,0))),pageable);
-        }
+
+        if (page==null)page=1;
         // 开始页
         pageable.setPagenumber(page);
         if (StringUtils.isNotBlank(id)) {
