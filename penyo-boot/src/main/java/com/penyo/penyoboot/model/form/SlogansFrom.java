@@ -1,4 +1,4 @@
-package com.penyo.penyoboot.pojo.form;
+package com.penyo.penyoboot.model.form;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.bson.types.ObjectId;

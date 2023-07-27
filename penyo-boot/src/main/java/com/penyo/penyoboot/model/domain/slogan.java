@@ -1,4 +1,4 @@
-package com.penyo.penyoboot.pojo.entity;
+package com.penyo.penyoboot.model.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

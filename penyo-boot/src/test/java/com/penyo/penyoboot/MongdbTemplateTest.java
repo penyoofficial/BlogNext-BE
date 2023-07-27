@@ -1,15 +1,19 @@
 package com.penyo.penyoboot;
 
-import com.penyo.penyoboot.pojo.entity.articles;
+import cn.hutool.json.JSONUtil;
+import com.penyo.penyoboot.dao.impl.userIdenceDaoImpl;
+import com.penyo.penyoboot.model.domain.articles;
+import com.penyo.penyoboot.model.form.ArticlesForm;
 import com.penyo.penyoboot.service.impl.userIdenceServiceImpl;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @description:
@@ -23,6 +27,9 @@ public class MongdbTemplateTest {
     private MongoTemplate mongoTemplate;
     @Autowired
     private userIdenceServiceImpl userIdenceService;
+
+    @Autowired
+    private userIdenceDaoImpl userIdenceDao;
 
     /**
      * 测试mongodb是否连接成功
@@ -39,6 +46,13 @@ public class MongdbTemplateTest {
     public void testGetAllSlogans(){
         String allSlogans = userIdenceService.getAllSlogans();
         log.info(allSlogans);
+    }
+    @Test
+    public void testGetArticles(){
+        ArticlesForm article=new ArticlesForm(null,"2023-6-1","2023-6-30","","",1);
+        Page<articles> stringObjectMap = userIdenceService.selectArticle(article);
+        System.out.println(JSONUtil.toJsonStr(stringObjectMap));
+
     }
 
 }

@@ -22,7 +22,7 @@ public class Result<T> implements Serializable {
         return success(null);
     }
 
-    private static <T> Result<T> success(T data) {
+    public static <T> Result<T> success(T data) {
         Result<T> result=new Result<>();
         result.setCode(ResultCode.SUCCESS.getCode());
         result.setMsg(ResultCode.SUCCESS.getMsg());
